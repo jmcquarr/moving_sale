@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            spacing: {
+              "sp-3xs": ["clamp(0.25rem, 0.2216rem + 0.1136vi, 0.3125rem)"],
+              "sp-2xs": ["clamp(0.5rem, 0.4432rem + 0.2273vi, 0.625rem)"],
+              "sp-xs": ["clamp(0.75rem, 0.6932rem + 0.2273vi, 0.875rem)"],
+              "sp-s": ["clamp(1rem, 0.9148rem + 0.3409vi, 1.1875rem)"],
+              "sp-m": ["clamp(1.5rem, 1.358rem + 0.5682vi, 1.8125rem)"],
+              "sp-l": ["clamp(2rem, 1.8295rem + 0.6818vi, 2.375rem)"],
+              "sp-xl": ["clamp(3rem, 2.7443rem + 1.0227vi, 3.5625rem)"],
+              "sp-2xl": ["clamp(4rem, 3.6591rem + 1.3636vi, 4.75rem)"],
+              "sp-3xl": ["clamp(6rem, 5.4886rem + 2.0455vi, 7.125rem)"],
+              "sp-5xl": ["clamp(12rem, 10.9773rem + 4.0909vi, 14.25rem)"],
+              "sp-6xl": ["clamp(15rem, 13.7216rem + 5.1136vi, 17.8125rem)"],
+
+              /* One-up pairs */
+              "sp-3xs-2xs": ["clamp(0.25rem, 0.0795rem + 0.6818vi, 0.625rem)"],
+              "sp-2xs-xs": ["clamp(0.5rem, 0.3295rem + 0.6818vi, 0.875rem)"],
+              "sp-xs-s": ["clamp(0.75rem, 0.5511rem + 0.7955vi, 1.1875rem)"],
+              "sp-s-m": ["clamp(1rem, 0.6307rem + 1.4773vi, 1.8125rem)"],
+              "sp-m-l": ["clamp(1.5rem, 1.1023rem + 1.5909vi, 2.375rem)"],
+              "sp-l-xl": ["clamp(2rem, 1.2898rem + 2.8409vi, 3.5625rem)"],
+              "sp-xl-2xl": ["clamp(3rem, 2.2045rem + 3.1818vi, 4.75rem)"],
+              "sp-2xl-3xl": ["clamp(4rem, 2.5795rem + 5.6818vi, 7.125rem)"],
+              "sp-4xl-5xl": ["clamp(8rem, 5.1591rem + 11.3636vi, 14.25rem)"],
+              "sp-5xl-6xl": ["clamp(12rem, 9.358rem + 10.5682vi, 17.8125rem)"],
+
+              /* Custom pairs */
+              "sp-s-l": ["clamp(1rem, 0.375rem + 2.5vi, 2.375rem)"],
+              "sp-3xs-4xl": ["clamp(0.25rem, -3.9545rem + 16.8182vi, 9.5rem)"],
+              "sp-3xs-5xl": ["clamp(0.25rem, -6.1136rem + 25.4545vi, 14.25rem)"],
+              "sp-3xl-5xl": ["clamp(6rem, 2.25rem + 15vi, 14.25rem)"],
+              "sp-3xl-6xl": ["clamp(8rem, 0.6307rem + 21.4773vi, 17.8125rem)"],
+              "sp-4xl-6xl": ["clamp(8rem, 3.5398rem + 17.8409vi, 17.8125rem)"],
+            },
+            fontSize: {
+              "fs-xs": ["clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem)"],
+              "fs-sm": ["clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem)"],
+              "fs-base": ["clamp(1rem, 0.34vi + 0.91rem, 1.19rem)"],
+              "fs-md": ["clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem)"],
+              "fs-lg": ["clamp(1.56rem, 1vi + 1.31rem, 2.11rem)"],
+              "fs-xl": ["clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem)"],
+              "fs-xxl": ["clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem)"],
+              "fs-xxxl": ["clamp(3.05rem, 3.54vi + 2.17rem, 5rem)"],
+            },
+          },
+        },
+      };
+    </script>
+    <title data-i18n="washer-title"></title>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="text-white py-1 sticky top-0 z-10 bg-black backdrop-filter backdrop-blur-lg bg-opacity-30">
+      <div class="px-sp-3xs-4xl">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+              />
+            </svg>
+            <span class="pl-1">TOP</span>
+          </a>
+          <ul class="flex gap-sp-xs">
+            <li><a href="#" onclick="changeLanguage('en')" id="lang-en">English</a></li>
+            <p>|</p>
+            <li><a href="#" onclick="changeLanguage('jp')" id="lang-jp">日本語</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Title -->
+    <h1 data-i18n="washer-title" class="py-sp-xl text-center uppercase font-bold text-fs-xl"></h1>
+
+    <!-- Image Gallery -->
+    <div class="flex flex-col gap-4 px-sp-3xs-5xl">
+      <div class="flex justify-center">
+        <img
+          id="main-img"
+          class="object-scale-down h-auto max-w-full rounded-lg object-center md:h-[480px]"
+          src="images/washer-1.jpeg"
+          alt=""
+        />
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        <div>
+          <img
+            src="images/washer-1.jpeg"
+            class="thumbnail ring-4 ring-blue-300 object-cover object-center h-20 w-20 max-w-full rounded-lg cursor-pointer"
+            alt="gallery-image"
+            onclick="changeGalleryImage(this)"
+          />
+        </div>
+        <div>
+          <img
+            src="images/washer-2.jpeg"
+            class="thumbnail object-cover object-center h-20 w-20 max-w-full rounded-lg cursor-pointer"
+            alt="gallery-image"
+            onclick="changeGalleryImage(this)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+      <h2
+        data-i18n="contact-header"
+        class="mb-4 text-3xl tracking-tight font-bold text-center text-gray-900 dark:text-white"
+      ></h2>
+      <form class="space-y-8" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Replace with your Access Key -->
+        <input type="hidden" name="access_key" value="50abf052-9f73-4039-990e-cca48a8fc296" />
+        <!-- Optional: Subject an be prefilled using type="hidden"
+       or type="text" for normal user submitted input -->
+        <input type="hidden" name="subject" value="Re: Washing Machine | 洗濯機" />
+
+        <!-- Form Inputs. Each input must have a name="" attribute -->
+        <div>
+          <label
+            for="name"
+            data-i18n="name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          ></label>
+          <input
+            type="text"
+            name="name"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+            placeholder="TARO YAMADA"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="email"
+            data-i18n="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          ></label>
+          <input
+            type="email"
+            name="email"
+            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+            placeholder="placeholder@email.com"
+            required
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label
+            for="message"
+            data-i18n="content"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          ></label>
+          <textarea
+            name="message"
+            rows="6"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 ray-400"
+            placeholder="Leave a comment..."
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          data-i18n="submit"
+          class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+
+    <footer data-i18n="footer_text" class="text-fs-sm text-center p-sp-s"></footer>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="./js/script.js"></script>
+  </body>
+</html>

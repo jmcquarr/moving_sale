@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            spacing: {
+              "sp-3xs": ["clamp(0.25rem, 0.2216rem + 0.1136vi, 0.3125rem)"],
+              "sp-2xs": ["clamp(0.5rem, 0.4432rem + 0.2273vi, 0.625rem)"],
+              "sp-xs": ["clamp(0.75rem, 0.6932rem + 0.2273vi, 0.875rem)"],
+              "sp-s": ["clamp(1rem, 0.9148rem + 0.3409vi, 1.1875rem)"],
+              "sp-m": ["clamp(1.5rem, 1.358rem + 0.5682vi, 1.8125rem)"],
+              "sp-l": ["clamp(2rem, 1.8295rem + 0.6818vi, 2.375rem)"],
+              "sp-xl": ["clamp(3rem, 2.7443rem + 1.0227vi, 3.5625rem)"],
+              "sp-2xl": ["clamp(4rem, 3.6591rem + 1.3636vi, 4.75rem)"],
+              "sp-3xl": ["clamp(6rem, 5.4886rem + 2.0455vi, 7.125rem)"],
+              "sp-5xl": ["clamp(12rem, 10.9773rem + 4.0909vi, 14.25rem)"],
+              "sp-6xl": ["clamp(15rem, 13.7216rem + 5.1136vi, 17.8125rem)"],
+
+              /* One-up pairs */
+              "sp-3xs-2xs": ["clamp(0.25rem, 0.0795rem + 0.6818vi, 0.625rem)"],
+              "sp-2xs-xs": ["clamp(0.5rem, 0.3295rem + 0.6818vi, 0.875rem)"],
+              "sp-xs-s": ["clamp(0.75rem, 0.5511rem + 0.7955vi, 1.1875rem)"],
+              "sp-s-m": ["clamp(1rem, 0.6307rem + 1.4773vi, 1.8125rem)"],
+              "sp-m-l": ["clamp(1.5rem, 1.1023rem + 1.5909vi, 2.375rem)"],
+              "sp-l-xl": ["clamp(2rem, 1.2898rem + 2.8409vi, 3.5625rem)"],
+              "sp-xl-2xl": ["clamp(3rem, 2.2045rem + 3.1818vi, 4.75rem)"],
+              "sp-2xl-3xl": ["clamp(4rem, 2.5795rem + 5.6818vi, 7.125rem)"],
+              "sp-4xl-5xl": ["clamp(8rem, 5.1591rem + 11.3636vi, 14.25rem)"],
+              "sp-5xl-6xl": ["clamp(12rem, 9.358rem + 10.5682vi, 17.8125rem)"],
+
+              /* Custom pairs */
+              "sp-s-l": ["clamp(1rem, 0.375rem + 2.5vi, 2.375rem)"],
+              "sp-3xs-4xl": ["clamp(0.25rem, -3.9545rem + 16.8182vi, 9.5rem)"],
+              "sp-3xs-5xl": ["clamp(0.25rem, -6.1136rem + 25.4545vi, 14.25rem)"],
+              "sp-3xl-5xl": ["clamp(6rem, 2.25rem + 15vi, 14.25rem)"],
+              "sp-3xl-6xl": ["clamp(8rem, 0.6307rem + 21.4773vi, 17.8125rem)"],
+              "sp-4xl-6xl": ["clamp(8rem, 3.5398rem + 17.8409vi, 17.8125rem)"],
+            },
+            fontSize: {
+              "fs-xs": ["clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem)"],
+              "fs-sm": ["clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem)"],
+              "fs-base": ["clamp(1rem, 0.34vi + 0.91rem, 1.19rem)"],
+              "fs-md": ["clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem)"],
+              "fs-lg": ["clamp(1.56rem, 1vi + 1.31rem, 2.11rem)"],
+              "fs-xl": ["clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem)"],
+              "fs-xxl": ["clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem)"],
+              "fs-xxxl": ["clamp(3.05rem, 3.54vi + 2.17rem, 5rem)"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Moving Out Sale</title>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="text-white py-1 sticky top-0 z-10 bg-black backdrop-filter backdrop-blur-lg bg-opacity-30">
+      <div class="px-sp-3xs-4xl">
+        <div class="flex justify-between">
+          <div class="flex">
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button
+                @click="open = !open"
+                class="flex flex-row items-center w-full px-4 py-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+              >
+                <span data-i18n="category">Dropdown</span>
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  :class="{'rotate-180': open, 'rotate-0': !open}"
+                  class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute left-0 min-w-full w-max mt-2 origin-top-left rounded-md shadow-lg"
+              >
+                <ul
+                  class="px-2 py-2 bg-black backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-md shadow dark-mode:bg-gray-800"
+                >
+                  <li
+                    data-i18n="category_1"
+                    id="category_1"
+                    class="cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  ></li>
+                  <li
+                    data-i18n="category_2"
+                    id="category_2"
+                    class="filter-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  ></li>
+                  <li
+                    data-i18n="category_3"
+                    id="category_3"
+                    class="filter-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  ></li>
+                  <li
+                    data-i18n="category_4"
+                    id="category_4"
+                    class="filter-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  ></li>
+                  <li
+                    data-i18n="category_5"
+                    id="category_5"
+                    class="filter-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  ></li>
+                </ul>
+              </div>
+            </div>
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button
+                @click="open = !open"
+                class="flex flex-row items-center w-full px-4 py-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+              >
+                <span data-i18n="sort">Dropdown</span>
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  :class="{'rotate-180': open, 'rotate-0': !open}"
+                  class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute left-0 mt-2 origin-top-left rounded-md shadow-lg min-w-full w-max"
+              >
+                <ul
+                  id="sort-list"
+                  class="px-2 py-2 bg-black backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-md shadow dark-mode:bg-gray-800"
+                >
+                  <li
+                    data-i18n="default"
+                    id="default"
+                    class="sort-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  >
+                    Link #1
+                  </li>
+                  <li
+                    data-i18n="low_to_high"
+                    id="low_to_high"
+                    class="sort-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  >
+                    Link #2
+                  </li>
+                  <li
+                    data-i18n="high_to_low"
+                    id="high_to_low"
+                    class="sort-button cursor-pointer block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  >
+                    Link #3
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ul class="flex items-center gap-sp-xs">
+            <li><a href="#" onclick="changeLanguage('en')" id="lang-en">English</a></li>
+            <p>|</p>
+            <li><a href="#" onclick="changeLanguage('jp')" id="lang-jp">日本語</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Wrapper -->
+    <div class="px-sp-3xs-4xl">
+      <!-- Header -->
+      <h1 class="mt-sp-xl mb-sp-3xs text-center text-fs-lg" data-i18n="welcome_message_header"></h1>
+      <p class="mb-sp-xs text-fs-sm text-center max-w-[800px] mx-auto" data-i18n="welcome_message_content"></p>
+      <p class="mb-sp-xl text-center text-fs-xs text-red-600"><span class="mr-1" data-i18n="update"></span>2024/5/14</p>
+      <h2 class="my-sp-xs text-center text-fs-md" data-i18n="explanation-header"></h2>
+      <p class="mb-sp-s text-fs-sm text-center" data-i18n="explanation-content"></p>
+      <h2 class="text-fs-md text-center" data-i18n="time-remaining"></h2>
+      <p id="timer" class="text-fs-base text-center"></p>
+
+      <!-- Main Content -->
+      <!-- Category Heading -->
+      <h3 id="category-heading" data-i18n="null" class="text-center my-4">Category Heading</h3>
+      <!-- Sort Heading -->
+      <div class="flex justify-center gap-1 sm:justify-start text-xs mb-3">
+        <h3 data-i18n="sort_heading"></h3>
+        <p id="sort_type" data-i18n="default"></p>
+      </div>
+
+      <!-- Item Grid -->
+      <div
+        class="item-grid sm:grid flex flex-wrap justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-sp-xs"
+      >
+        <!-- Item 1 -->
+
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="sofa.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/sofa-1.jpg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥5,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥44,800</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="sofa-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>0</h6>
+              <p data-i18n="sofa-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 2 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="leather_chair.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/leather-chair-1.jpg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥20,000</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+
+              <h5
+                data-i18n="leather-chair-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+
+              <p data-i18n="leather-chair-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 3 -->
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="side_table.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/side-table-2.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥2,490</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+
+              <h5
+                data-i18n="side-table-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+
+              <p data-i18n="side-table-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 4 -->
+        <div
+          class="card category_4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="christmas_tree.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/christmas-tree-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥2,000</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_4" class="text-gray-600 uppercase text-fs-xs"></p>
+
+              <h5
+                data-i18n="christmas-tree-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+
+              <p data-i18n="christmas-tree-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 5 -->
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="bed.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/bed-1.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥1,500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥24,800</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+
+              <h5 data-i18n="bed-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+
+              <p data-i18n="bed-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 6 -->
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="bed_frame.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/bed-frame-1.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥12,800</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+
+              <h5
+                data-i18n="bed-frame-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+
+              <p data-i18n="bed-frame-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 7 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="computer_chair.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/computer-chair-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p data-i18n="free" class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥0</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥16,330</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="computer-chair-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="computer-chair-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 8 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="computer_desk.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/computer-desk-2.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥7,280</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="computer-desk-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="computer-desk-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 9 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="monitor.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/monitor-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥5,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥29,800</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="monitor-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="monitor-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 10 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="monitor_stand.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/monitor-stand-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥1,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥3,699</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="monitor-stand-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="monitor-stand-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 11 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="nightstand.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/night-stand-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥3,900</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="nightstand-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>2</h6>
+              <p data-i18n="nightstand-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 12 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="computer_case.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/computer-case-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥4,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥8,280</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="computer-case-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="computer-case-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 13 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="massage.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/massage-5.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥19,800</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="massage-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="massage-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 14 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="oven.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/oven-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥19,990</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="oven-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="oven-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 15 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="ladder.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/ladder-4.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥12,500</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="ladder-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="ladder-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 16 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="stackable_storage.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/stackable-storage-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥1,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥2,000</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="stackable-storage-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>2</h6>
+              <p data-i18n="stackable-storage-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 17 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="rack.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/rack-1.jpg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥750</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥3,499</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="rack-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>2</h6>
+              <p data-i18n="rack-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 18 -->
+        <div
+          class="card sold category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="stove.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/stove-1.jpg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-red-600">
+                <span class="text-2xl text-white semi-bold">Sold!!</span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥3,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥9,110</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="stove-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>0</h6>
+              <p data-i18n="stove-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 19 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="drying_rack.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/drying-rack-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥1,500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥6,599</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="drying-rack-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="drying-rack-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 20 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="fridge.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/fridge-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥7,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥40,890</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="fridge-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="fridge-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 21 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="kitchen_table.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/kitchen-table-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥12,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥50,600</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="kitchen-table-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="kitchen-table-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 22 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="washer.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/washer-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥4,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥37,180</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="washer-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="washer-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 23 -->
+        <div
+          class="card category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="washer_rack.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/washer-rack-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥2,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥8,490</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="washer-rack-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="washer-rack-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 24 -->
+        <div
+          class="card reserved category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="tv.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/tv-1.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥5,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥20,000</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5 data-i18n="tv-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="tv-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 25 -->
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <a href="tv_stand.html">
+            <div class="relative overflow-hidden">
+              <img class="rounded-t-lg" src="images/tv-stand-1.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥3,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥20,000</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+              <h5
+                data-i18n="tv-stand-title"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              ></h5>
+              <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+              <p data-i18n="tv-stand-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 26 -->
+        <div
+          class="card reserved category_2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div class="relative overflow-hidden">
+            <a href="station_table.html">
+              <img class="rounded-t-lg" src="images/station-table-2.jpeg" alt="" />
+              <div class="absolute transform -rotate-45 text-center left-[-50px] top-[32px] w-[200px] bg-gray-600">
+                <span data-i18n="reserved" class="text-2xl text-white semi-bold"></span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥1,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥10,000</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-5">
+            <p data-i18n="category_2" class="text-gray-600 uppercase text-fs-xs"></p>
+            <h5
+              data-i18n="station-table-title"
+              class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            ></h5>
+            <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+            <p data-i18n="station-table-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+          </div>
+        </div>
+
+        <!-- Item 27 -->
+        <div
+          class="card category_5 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div class="relative overflow-hidden">
+            <a href="draft_guard.html">
+              <img class="rounded-t-lg" src="images/draft-guard-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥500</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥1,000</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-5">
+            <p data-i18n="category_5" class="text-gray-600 uppercase text-fs-xs"></p>
+            <h5
+              data-i18n="draft-guard-title"
+              class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            ></h5>
+            <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+            <p data-i18n="draft-guard-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+          </div>
+        </div>
+
+        <!-- Item 28 -->
+        <div
+          class="card category_3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div class="relative overflow-hidden">
+            <a href="surface.html">
+              <img class="rounded-t-lg" src="images/surface-1.jpeg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                class="rounded absolute top-2 right-2 fill-white"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"
+                />
+                <path
+                  d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+              <div class="absolute bottom-0">
+                <div class="flex items-center">
+                  <p class="bg-orange-500 text-fs-base text-white m-sp-2xs px-1 rounded-sm">¥15,000</p>
+                  <p class="line-through text-fs-sm text-white p-1">¥111,800</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-5">
+            <p data-i18n="category_3" class="text-gray-600 uppercase text-fs-xs"></p>
+            <h5 data-i18n="surface-title" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+            <h6 class="text-xs mb-2 text-gray-500"><span data-i18n="stock"></span>1</h6>
+            <p data-i18n="surface-details" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+          </div>
+        </div>
+
+        <!-- Item 28 -->
+      </div>
+      <footer data-i18n="footer_text" class="text-fs-sm text-center p-sp-s"></footer>
+      <!-- JavaScript -->
+      <script type="text/javascript" src="./js/script.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    </div>
+  </body>
+</html>
